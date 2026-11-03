@@ -447,11 +447,26 @@ export class ReadingSystem {
   }
 
   #cycleTranslation() {
-    const modes = this.config.TRANSLATION_MODES;
+    const modes = ['blur', 'blur-chinese', 'blur-english'];
     const currentIndex = modes.indexOf(this.state.translationMode);
     this.state.translationMode = modes[(currentIndex + 1) % modes.length];
+    this.#applyCurrentTranslationMode();
+  }
+
+  #cycleOtherTranslation() {
+    const modes = ['show', 'english', 'chinese', 'blur-both'];
+    const currentIndex = modes.indexOf(this.state.translationMode);
+    this.state.translationMode = modes[(currentIndex + 1) % modes.length];
+    this.#applyCurrentTranslationMode();
+  }
+
+  #applyCurrentTranslationMode() {
     setStorage(this.config.STORAGE_KEYS.TRANSLATION_MODE, this.state.translationMode);
-    this.lyricsView.applyTranslationMode(this.state.translationMode, this.toggleTranslationBtn);
+    this.lyricsView.applyTranslationMode(
+      this.state.translationMode,
+      this.toggleTranslationBtn,
+      this.toggleOtherTranslationBtn
+    );
     this.toast.show(TRANSLATION_LABELS[this.state.translationMode]);
   }
 
