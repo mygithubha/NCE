@@ -100,7 +100,7 @@ export class LyricsView {
    * @param {string} mode
    * @param {HTMLElement} [toggleBtn]
    */
-  applyTranslationMode(mode, toggleBtn) {
+  applyTranslationMode(mode, toggleBtn, otherToggleBtn) {
     const body = document.body;
     body.classList.toggle(MODE_CLASS.english, mode === 'english');
     body.classList.toggle(MODE_CLASS.chinese, mode === 'chinese');
@@ -109,21 +109,36 @@ export class LyricsView {
     body.classList.toggle(MODE_CLASS['blur-english'], mode === 'blur-english');
     body.classList.toggle(MODE_CLASS['blur-both'], mode === 'blur-both');
 
-    if (!toggleBtn) return;
-
-    const labels = {
-      show: { text: '双', pressed: 'true', label: '显示双语' },
-      blur: { text: '糊', pressed: 'mixed', label: '糊：当前句清晰，其余句子模糊' },
-      'blur-chinese': { text: '糊中', pressed: 'mixed', label: '糊中：只显示英文，当前句清晰' },
-      'blur-english': { text: '糊英', pressed: 'mixed', label: '糊英：只显示中文，当前句清晰' },
-      'blur-both': { text: '糊中+糊英', pressed: 'mixed', label: '糊中+糊英：中英文全部模糊' },
-      english: { text: '英', pressed: 'false', label: '仅显示英文' },
-      chinese: { text: '中', pressed: 'true', label: '仅显示中文' },
+    const primaryLabels = {
+      blur: '糊',
+      'blur-chinese': '糊中',
+      'blur-english': '糊英',
     };
-    const ui = labels[mode] || labels.show;
-    toggleBtn.textContent = ui.text;
-    toggleBtn.setAttribute('aria-pressed', ui.pressed);
-    toggleBtn.setAttribute('aria-label', ui.label);
+    const otherLabels = {
+      show: '双',
+      english: '英',
+      chinese: '中',
+      'blur-both': '双糊',
+    };
+
+    if (toggleBtn) {
+      const primaryMode = Object.prototype.hasOwnProperty.call(primaryLabels, mode);
+      toggleBtn.textContent = primaryMode ? primaryLabels[mode] : '糊';
+      toggleBtn.setAttribute('aria-pressed', primaryMode ? 'true' : 'false');
+      toggleBtn.setAttribute('aria-label', primaryMode
+        ? '当前模式：' + primaryLabels[mode] + '，点击切换听力训练模式'
+        : '切换听力训练模式');
+      toggleBtn.title = '糊 → 糊中 → 糊英';
+    }
+
+    if (otherToggleBtn) {
+      const otherMode = Object.prototype.hasOwnProperty.call(otherLabels, mode);
+      otherToggleBtn.textContent = otherMode ? otherLabels[mode] : '其他';
+      otherToggleBtn.setAttribute('aria-pressed', otherMode ? 'true' : 'false');
+      otherToggleBtn.setAttribute('aria-label', otherMode
+        ? '当前其他模式：' + mode
+        : '切换双语及其他原有模式');
+      otherToggleBtn.title = '双语 → 仅英文 → 仅中文 → 双语模糊';
   }
 
   destroy() {
