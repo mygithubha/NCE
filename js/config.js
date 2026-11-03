@@ -15,7 +15,7 @@ export const CONFIG = {
   },
 
   AVAILABLE_SPEEDS: [0.5, 0.75, 1.0, 1.25, 1.5, 2.0],
-  TRANSLATION_MODES: ['show', 'english', 'chinese', 'blur', 'blur-chinese', 'blur-english', 'blur-both'],
+  TRANSLATION_MODES: ['blur', 'blur-chinese', 'blur-english', 'show', 'english', 'chinese', 'blur-both'],
   LOOP_MODES: ['off', 'click', 'one', 'list', 'book'],
 
   PLAYER: {
@@ -50,7 +50,7 @@ export function createInitialState() {
     currentUnitIndex: -1,
     loopMode: 'off',
     playbackRate: 1.0,
-    translationMode: 'show',
+    translationMode: 'blur',
     sentenceLoopIndex: -1,
   };
 }
