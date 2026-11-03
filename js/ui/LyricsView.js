@@ -113,9 +113,9 @@ export class LyricsView {
 
     const labels = {
       show: { text: '双', pressed: 'true', label: '显示双语' },
-      blur: { text: '糊', pressed: 'mixed', label: '原有模糊翻译模式' },
-      'blur-chinese': { text: '糊中', pressed: 'mixed', label: '糊中：中文模糊，英文清晰' },
-      'blur-english': { text: '糊英', pressed: 'mixed', label: '糊英：英文模糊，中文清晰' },
+      blur: { text: '糊', pressed: 'mixed', label: '糊：当前句清晰，其余句子模糊' },
+      'blur-chinese': { text: '糊中', pressed: 'mixed', label: '糊中：只显示英文，当前句清晰' },
+      'blur-english': { text: '糊英', pressed: 'mixed', label: '糊英：只显示中文，当前句清晰' },
       'blur-both': { text: '糊中+糊英', pressed: 'mixed', label: '糊中+糊英：中英文全部模糊' },
       english: { text: '英', pressed: 'false', label: '仅显示英文' },
       chinese: { text: '中', pressed: 'true', label: '仅显示中文' },
