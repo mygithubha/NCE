@@ -1516,3 +1516,26 @@ body.blur-english-translation .lyric-line.reveal-current .lyric-translation {
   filter: none !important;
   opacity: 1 !important;
 }
+
+
+/* 语言隔离：糊中只保留英文；糊英只保留中文。 */
+body.blur-chinese-translation .lyric-translation {
+  display: none !important;
+}
+
+body.blur-english-translation .lyric-text {
+  display: none !important;
+}
+
+/* 当前句/手动点击的句子，只显示该模式允许的语言且保持清晰。 */
+body.blur-chinese-translation .lyric-line.reveal-current .lyric-text {
+  display: block !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+body.blur-english-translation .lyric-line.reveal-current .lyric-translation {
+  display: block !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
