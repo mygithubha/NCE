@@ -876,10 +876,14 @@ body.dark-theme .play-btn:disabled {
 }
 
 .toggle-translation-btn {
-  font-size: 13px;
+  width: auto;
+  min-width: var(--control-h);
+  padding: 0 8px;
+  font-size: 12px;
   font-weight: 700;
   font-family: var(--font-mono);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .lyrics-container {
@@ -930,6 +934,31 @@ body.blur-translation .lyric-line:hover .lyric-translation,
 body.blur-translation .lyric-line:hover .lyric-text {
   filter: none;
   opacity: 1;
+}
+
+/* 听力训练模式：答案始终保持模糊，不因点击、播放高亮、键盘聚焦或鼠标悬停而揭示。 */
+body.blur-chinese-translation .lyric-translation,
+body.blur-chinese-translation .lyric-line:hover .lyric-translation,
+body.blur-chinese-translation .lyric-line.active .lyric-translation,
+body.blur-chinese-translation .lyric-line:focus .lyric-translation,
+body.blur-both-translation .lyric-translation,
+body.blur-both-translation .lyric-line:hover .lyric-translation,
+body.blur-both-translation .lyric-line.active .lyric-translation,
+body.blur-both-translation .lyric-line:focus .lyric-translation {
+  filter: blur(4px);
+  opacity: 0.6;
+}
+
+body.blur-english-translation .lyric-text,
+body.blur-english-translation .lyric-line:hover .lyric-text,
+body.blur-english-translation .lyric-line.active .lyric-text,
+body.blur-english-translation .lyric-line:focus .lyric-text,
+body.blur-both-translation .lyric-text,
+body.blur-both-translation .lyric-line:hover .lyric-text,
+body.blur-both-translation .lyric-line.active .lyric-text,
+body.blur-both-translation .lyric-line:focus .lyric-text {
+  filter: blur(4px);
+  opacity: 0.6;
 }
 
 .placeholder {
@@ -1450,4 +1479,14 @@ body::-webkit-scrollbar-thumb:hover,
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+
+/* 逐句揭晓：模糊模式下仅当前播放句的目标文本清晰。 */
+body.blur-chinese-translation .lyric-line.reveal-current .lyric-translation,
+body.blur-both-translation .lyric-line.reveal-current .lyric-translation,
+body.blur-english-translation .lyric-line.reveal-current .lyric-text,
+body.blur-both-translation .lyric-line.reveal-current .lyric-text {
+  filter: none !important;
+  opacity: 1 !important;
 }
