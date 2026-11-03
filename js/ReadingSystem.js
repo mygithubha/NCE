@@ -34,9 +34,9 @@ const TRANSLATION_LABELS = {
   show: '显示双语',
   english: '仅显示英文',
   chinese: '仅显示中文',
-  blur: '模糊翻译（原有模式）',
-  'blur-chinese': '糊中：中文模糊，英文清晰',
-  'blur-english': '糊英：英文模糊，中文清晰',
+  blur: '糊：当前句清晰，其余句子模糊',
+  'blur-chinese': '糊中：只显示英文，当前句清晰',
+  'blur-english': '糊英：只显示中文，当前句清晰',
   'blur-both': '糊中+糊英：中英文全部模糊',
 };
 
