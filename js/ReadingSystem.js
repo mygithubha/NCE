@@ -34,7 +34,10 @@ const TRANSLATION_LABELS = {
   show: '显示双语',
   english: '仅显示英文',
   chinese: '仅显示中文',
-  blur: '模糊翻译',
+  blur: '模糊翻译（原有模式）',
+  'blur-chinese': '糊中：中文模糊，英文清晰',
+  'blur-english': '糊英：英文模糊，中文清晰',
+  'blur-both': '糊中+糊英：中英文全部模糊',
 };
 
 export class ReadingSystem {
@@ -390,6 +393,8 @@ export class ReadingSystem {
 
   #onAudioEnded() {
     this.#saveProgress();
+    // 音频结束后没有当前播放句，模糊模式下所有句子恢复模糊。
+    this.#setHighlight(-1);
     if (!this.state.units.length) return;
 
     if (this.state.loopMode === 'book') {
