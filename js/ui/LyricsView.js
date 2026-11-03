@@ -10,6 +10,9 @@ const MODE_CLASS = {
   english: 'english-translation',
   chinese: 'chinese-translation',
   blur: 'blur-translation',
+  'blur-chinese': 'blur-chinese-translation',
+  'blur-english': 'blur-english-translation',
+  'blur-both': 'blur-both-translation',
 };
 
 export class LyricsView {
@@ -76,12 +79,14 @@ export class LyricsView {
 
     if (this.activeIndex >= 0) {
       removeClass(this.lineEls[this.activeIndex], 'active');
+      this.lineEls[this.activeIndex]?.classList.remove('reveal-current');
     }
 
     if (index >= 0) {
       const line = this.lineEls[index];
       if (line) {
         addClass(line, 'active');
+        line.classList.add('reveal-current');
         if (this.#shouldScroll(line)) {
           line.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
@@ -100,12 +105,18 @@ export class LyricsView {
     body.classList.toggle(MODE_CLASS.english, mode === 'english');
     body.classList.toggle(MODE_CLASS.chinese, mode === 'chinese');
     body.classList.toggle(MODE_CLASS.blur, mode === 'blur');
+    body.classList.toggle(MODE_CLASS['blur-chinese'], mode === 'blur-chinese');
+    body.classList.toggle(MODE_CLASS['blur-english'], mode === 'blur-english');
+    body.classList.toggle(MODE_CLASS['blur-both'], mode === 'blur-both');
 
     if (!toggleBtn) return;
 
     const labels = {
       show: { text: '双', pressed: 'true', label: '显示双语' },
-      blur: { text: '糊', pressed: 'mixed', label: '模糊翻译' },
+      blur: { text: '糊', pressed: 'mixed', label: '原有模糊翻译模式' },
+      'blur-chinese': { text: '糊中', pressed: 'mixed', label: '糊中：中文模糊，英文清晰' },
+      'blur-english': { text: '糊英', pressed: 'mixed', label: '糊英：英文模糊，中文清晰' },
+      'blur-both': { text: '糊中+糊英', pressed: 'mixed', label: '糊中+糊英：中英文全部模糊' },
       english: { text: '英', pressed: 'false', label: '仅显示英文' },
       chinese: { text: '中', pressed: 'true', label: '仅显示中文' },
     };
