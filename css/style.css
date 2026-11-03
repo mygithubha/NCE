@@ -1563,3 +1563,19 @@ body.blur-translation .lyric-line.reveal-current .lyric-text {
   filter: none !important;
   opacity: 1 !important;
 }
+
+
+/* 糊模式最终规则：中英文所有句子一律模糊，包括当前句、播放高亮、点读、悬停和聚焦状态。仅作用于 blur-translation，不影响其他模式。 */
+body.blur-translation .lyric-text,
+body.blur-translation .lyric-translation,
+body.blur-translation .lyric-line.reveal-current .lyric-text,
+body.blur-translation .lyric-line.reveal-current .lyric-translation,
+body.blur-translation .lyric-line:hover .lyric-text,
+body.blur-translation .lyric-line:hover .lyric-translation,
+body.blur-translation .lyric-line.active .lyric-text,
+body.blur-translation .lyric-line.active .lyric-translation,
+body.blur-translation .lyric-line:focus .lyric-text,
+body.blur-translation .lyric-line:focus .lyric-translation {
+  filter: blur(4px) !important;
+  opacity: 0.6 !important;
+}
