@@ -92,6 +92,7 @@ export class ReadingSystem {
     this.speedText = qs('#speedText');
     this.loopToggleBtn = qs('#loopToggleBtn');
     this.toggleTranslationBtn = qs('#toggleTranslationBtn');
+    this.toggleOtherTranslationBtn = qs('#toggleOtherTranslationBtn');
 
     this.toast = new Toast();
 
@@ -251,6 +252,7 @@ export class ReadingSystem {
     on(this.speedBtn, 'click', () => this.#cycleSpeed(), { signal });
     on(this.loopToggleBtn, 'click', () => this.#cycleLoopMode(), { signal });
     on(this.toggleTranslationBtn, 'click', () => this.#cycleTranslation(), { signal });
+    on(this.toggleOtherTranslationBtn, 'click', () => this.#cycleOtherTranslation(), { signal });
 
     on(window, 'hashchange', () => {
       const newKey = location.hash.slice(1).trim() || this.config.DEFAULT_BOOK_KEY;
@@ -293,7 +295,7 @@ export class ReadingSystem {
     this.player.setRate(this.state.playbackRate);
     this.#updateSpeedUI();
     this.#updateLoopUI();
-    this.lyricsView.applyTranslationMode(this.state.translationMode, this.toggleTranslationBtn);
+    this.lyricsView.applyTranslationMode(this.state.translationMode, this.toggleTranslationBtn, this.toggleOtherTranslationBtn);
   }
 
   #onBookSelect(bookKey) {
