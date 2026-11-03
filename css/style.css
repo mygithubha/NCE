@@ -1547,3 +1547,19 @@ body.blur-english-translation .lyric-line.reveal-current .lyric-translation {
   min-width: 42px;
   padding: 0 7px;
 }
+
+
+/* 糊模式：当前句英文可揭示，但中文翻译始终模糊，不随播放或点读变清晰。 */
+body.blur-translation .lyric-translation,
+body.blur-translation .lyric-line.reveal-current .lyric-translation,
+body.blur-translation .lyric-line:hover .lyric-translation,
+body.blur-translation .lyric-line.active .lyric-translation,
+body.blur-translation .lyric-line:focus .lyric-translation {
+  filter: blur(4px) !important;
+  opacity: 0.6 !important;
+}
+
+body.blur-translation .lyric-line.reveal-current .lyric-text {
+  filter: none !important;
+  opacity: 1 !important;
+}
