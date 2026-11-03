@@ -1490,3 +1490,29 @@ body.blur-both-translation .lyric-line.reveal-current .lyric-text {
   filter: none !important;
   opacity: 1 !important;
 }
+
+
+/* 修正逐句揭晓：糊中/糊英模式下，非当前句的中英文都必须模糊。 */
+body.blur-chinese-translation .lyric-text,
+body.blur-chinese-translation .lyric-line:hover .lyric-text,
+body.blur-chinese-translation .lyric-line.active .lyric-text,
+body.blur-chinese-translation .lyric-line:focus .lyric-text,
+body.blur-english-translation .lyric-translation,
+body.blur-english-translation .lyric-line:hover .lyric-translation,
+body.blur-english-translation .lyric-line.active .lyric-translation,
+body.blur-english-translation .lyric-line:focus .lyric-translation {
+  filter: blur(4px) !important;
+  opacity: 0.6 !important;
+}
+
+/* 糊中：当前句只揭示英文；中文继续模糊。 */
+body.blur-chinese-translation .lyric-line.reveal-current .lyric-text {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* 糊英：当前句只揭示中文；英文继续模糊。 */
+body.blur-english-translation .lyric-line.reveal-current .lyric-translation {
+  filter: none !important;
+  opacity: 1 !important;
+}
