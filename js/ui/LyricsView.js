@@ -139,6 +139,7 @@ export class LyricsView {
         ? '当前其他模式：' + mode
         : '切换双语及其他原有模式');
       otherToggleBtn.title = '双语 → 仅英文 → 仅中文 → 双语模糊';
+    }
   }
 
   destroy() {
