@@ -930,10 +930,11 @@ body.blur-translation .lyric-text {
   opacity: 0.6;
 }
 
-body.blur-translation .lyric-line:hover .lyric-translation,
-body.blur-translation .lyric-line:hover .lyric-text {
-  filter: none;
-  opacity: 1;
+/* 糊模式：只揭示当前播放/手动点读句，上一句切换后立即恢复模糊。 */
+body.blur-translation .lyric-line.reveal-current .lyric-translation,
+body.blur-translation .lyric-line.reveal-current .lyric-text {
+  filter: none !important;
+  opacity: 1 !important;
 }
 
 /* 听力训练模式：答案始终保持模糊，不因点击、播放高亮、键盘聚焦或鼠标悬停而揭示。 */
