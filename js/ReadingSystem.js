@@ -92,6 +92,8 @@ export class ReadingSystem {
     this.speedText = qs('#speedText');
     this.loopToggleBtn = qs('#loopToggleBtn');
     this.toggleTranslationBtn = qs('#toggleTranslationBtn');
+    this.prevTranslationModeBtn = qs('#prevTranslationModeBtn');
+    this.nextTranslationModeBtn = qs('#nextTranslationModeBtn');
     this.toggleOtherTranslationBtn = qs('#toggleOtherTranslationBtn');
 
     this.toast = new Toast();
@@ -252,6 +254,8 @@ export class ReadingSystem {
     on(this.speedBtn, 'click', () => this.#cycleSpeed(), { signal });
     on(this.loopToggleBtn, 'click', () => this.#cycleLoopMode(), { signal });
     on(this.toggleTranslationBtn, 'click', () => this.#cycleTranslation(), { signal });
+    on(this.prevTranslationModeBtn, 'click', () => this.#stepTranslation(-1), { signal });
+    on(this.nextTranslationModeBtn, 'click', () => this.#stepTranslation(1), { signal });
     on(this.toggleOtherTranslationBtn, 'click', () => this.#cycleOtherTranslation(), { signal });
 
     on(window, 'hashchange', () => {
@@ -447,9 +451,17 @@ export class ReadingSystem {
   }
 
   #cycleTranslation() {
+    this.#stepTranslation(1);
+  }
+
+  #stepTranslation(direction) {
     const modes = ['blur', 'blur-chinese', 'blur-english'];
     const currentIndex = modes.indexOf(this.state.translationMode);
-    this.state.translationMode = modes[(currentIndex + 1) % modes.length];
+    if (currentIndex < 0) {
+      this.state.translationMode = direction > 0 ? modes[0] : modes[modes.length - 1];
+    } else {
+      this.state.translationMode = modes[(currentIndex + direction + modes.length) % modes.length];
+    }
     this.#applyCurrentTranslationMode();
   }
 
