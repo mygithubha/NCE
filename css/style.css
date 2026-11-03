@@ -1540,3 +1540,10 @@ body.blur-english-translation .lyric-line.reveal-current .lyric-translation {
   filter: none !important;
   opacity: 1 !important;
 }
+
+
+/* 其他显示模式按钮：与常用听力训练模式按钮保持独立。 */
+.other-translation-btn {
+  min-width: 42px;
+  padding: 0 7px;
+}
